@@ -8,7 +8,7 @@ import { doc, getDoc, getFirestore, increment, setDoc, updateDoc,arrayUnion } fr
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const login = inject('account', { name: '未登入', email: '', password: '' })
+const login = inject('account', { name: '未登入', email: '', password: '', subjects:[] })
 const state = inject('state', { 
   message: '請輸入帳號密碼', 
   status: 'info' as 'info' | 'error' | 'success' | 'warning' | undefined,
@@ -19,6 +19,7 @@ const account = reactive({
   name: login.name,
   email: '',
   password: '',
+  subjects:[]
 })
 
 watch(login, () => {
@@ -52,6 +53,7 @@ async function handleClick(status: 'signIn' | 'signUp' | 'signOut') {
       if (res.user) {
         if (userDoc.exists()) {
           account.name = userDoc.data().name? userDoc.data().name:''
+          account.subjects = userDoc.data().subjects? userDoc.data().subjects:[]
         }
         state.action = 'signOut'
         state.status = 'success'
