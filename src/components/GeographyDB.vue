@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, watch, inject } from 'vue'
-import { addDoc, collection, getDocs, getFirestore, where, query } from 'firebase/firestore'
+import { addDoc, collection, getDocs, getFirestore,arrayUnion, where, query,updateDoc,doc,increment,setDoc } from 'firebase/firestore'
 import app from '@/components/settings/FirebaseConfig.vue'
 
 let units = [
@@ -92,7 +92,6 @@ async function checkAnswers() {
     }
   );
 }
-
 
 
 </script>

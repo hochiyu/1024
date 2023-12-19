@@ -3,7 +3,7 @@ import { inject, reactive, watch } from 'vue'
 import app from '@/components/settings/FirebaseConfig.vue'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, getAuth, signOut } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
-import { doc, getDoc, getFirestore, increment, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, getFirestore, increment, setDoc, updateDoc,arrayUnion } from 'firebase/firestore';
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -111,8 +111,6 @@ async function handleClick(status: 'signIn' | 'signUp' | 'signOut') {
     }
   }
 }
-
-
 
 </script>
 <template>

@@ -38,6 +38,7 @@ const unsub = onAuthStateChanged(auth, async (user)=>{
   if (user) {
     account.name='已登入'
     account.email = user.email?user.email:''
+    account.id = user.uid
     
     const userDoc = await getDoc(doc(db, "user", user.uid));
 

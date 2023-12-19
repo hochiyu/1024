@@ -52,6 +52,7 @@ async function deleteDoc(){
       loginCount: deleteField()
     });
 }
+
 </script>
 <template>
   <v-container>
