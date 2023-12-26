@@ -54,7 +54,10 @@ async function handleClick(status: 'signIn' | 'signUp' | 'signOut') {
         if (userDoc.exists()) {
           account.name = userDoc.data().name? userDoc.data().name:''
           account.subjects = userDoc.data().subjects? userDoc.data().subjects:[]
+          login.subjects = account.subjects
+          console.log(userDoc.data().subjects);
         }
+        
         state.action = 'signOut'
         state.status = 'success'
         state.message = account.email + '登入成功'

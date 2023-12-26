@@ -20,7 +20,8 @@ const account = reactive({
   email: '',
   id: '',
   password: '',
-  loginCount: 0
+  loginCount: 0,
+  subjects:[]
 })
 
 const state = reactive({
@@ -45,6 +46,7 @@ const unsub = onAuthStateChanged(auth, async (user)=>{
     if (userDoc.exists()) {
       account.name = userDoc.data().name? userDoc.data().name:''
       account.loginCount = userDoc.data().loginCount
+      account.subjects = userDoc.data().subjects
     }
     else{
       account.name = '未登入'

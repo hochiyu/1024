@@ -1,24 +1,26 @@
 <script setup lang="ts">
 import { inject, reactive, watch } from 'vue';
-import { doc, getFirestore, updateDoc ,deleteField } from 'firebase/firestore';
+import { doc, getFirestore, updateDoc ,deleteField,collection,query,where, orderBy,limit, getDocs} from 'firebase/firestore';
 import app from '@/components/settings/FirebaseConfig.vue'
 import { FirebaseError } from '@firebase/util';
 const db = getFirestore(app);
-const login = inject('account', { name: '未登入', email: '', id:'', loginCount: 0, subjects: '' })
+const login = inject('account', { name: '未登入', email: '', id:'', loginCount: 0, subjects: []})
 const account = reactive({
   name: login.name,
   loginCount: login.loginCount,
-  subjects: login.subjects
+  subjects: login.subjects,
+  record:[{unit:0,correctCount:0,incorrectCount:0}]
 })
 watch(login, () => {
   if (login.email!== ""){
     account.name = login.name,
     account.loginCount = login.loginCount,
     account.subjects = login.subjects
+    console.log(login)
   } else {
     account.name = '未登入',
     account.loginCount = 0,
-    account.subjects = ''
+    account.subjects = []
   }
   },{ 
     immediate: true
@@ -53,6 +55,9 @@ async function deleteDoc(){
     });
 }
 
+
+
+
 </script>
 <template>
   <v-container>
@@ -74,9 +79,7 @@ async function deleteDoc(){
         <div class="text-body-1 mb-2">
           已完成的科目：{{ account.subjects }}
         </div>
-        <div class="text-body-1">
-          已完成的單元：
-        </div>
+       
         
       </v-card-text>
       <v-card-actions>
