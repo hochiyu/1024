@@ -23,11 +23,3 @@ watch(login, () => {
     <v-btn color="secondary" >回首頁</v-btn>    
   </v-container>
 </template>
-</script>
-<template>
-  <v-container>
-    <v-text-field label="姓名"></v-text-field>
-    <v-btn color="primary" >更新</v-btn>
-    <v-btn color="secondary" >回首頁</v-btn>    
-  </v-container>
-</template>
