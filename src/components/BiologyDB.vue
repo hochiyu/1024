@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { inject, reactive, watch } from 'vue';
-</script>import { inject, reactive } from 'vue';
+
+
+
+const login = inject('account', { name: '未登入', email: '' })
+const account = reactive({
+  name: login.name,
+})
 watch(login, () => {
   if (login.email!== ""){
     account.name = login.name
@@ -9,11 +15,6 @@ watch(login, () => {
     immediate: true
 
   })
-
-const login = inject('account', { name: '未登入', email: '' })
-const account = reactive({
-  name: login.name,
-})
 </script>
 <template>
   <v-container>
